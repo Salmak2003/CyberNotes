@@ -1,0 +1,41 @@
+OWASP TOP 10 Vulnerability
+1-Injections :
+1) SQL Injection :This occurs when user controlled input is passed to SQL queries.
+2) Command Injection: This occurs when user input is passed to system commands.
+The main defence for preventing injection attacks is ensuring that user controlled input is not interpreted as queries or commands
+     1)Using an allow list: when input is sent to the server, this input is compared to a list of safe input or characters.
+    2)Stripping input: If the input contains dangerous characters, these characters are removed before they are processed.
+
+Command Injection 
+-The worst thing they could do would be to spawn a reverse shell to become the user that the web server is running as.  A simple `;nc -e /bin/bash`
+    Blind command injection occurs when the system command made to the server does not return the response to the user in the HTML document.  
+    Active command injection will return the response to the user.  It can be made visible through several HTML elements.
+
+==2-Broken Authentication==
+-Brute force attacks
+-Use of weak credentials
+-Weak Session Cookies: Session cookies are how the server keeps track of users. If session cookies contain predictable values, an attacker can set their own session cookies and access users’ accounts.
+
+==3-Sensitive Data Exposure==
+-databases can also be stored as files. These databases are referred to as "flat-file" databases, as they are stored as a single file on the computer. ( _SQLite_ database)
+Crackstation : online tool to cracking weak password hashes like MD5 hashes
+
+==4- XML External Entity attack==
+ =>a vulnerability that abuses features of XML parsers/data.
+ ==>It often allows an attacker to interact with any backend or external systems that the application itself can access and can allow the attacker to read the file on that system. They can also cause Denial of Service (DoS) attack or could use XXE to perform Server-Side Request Forgery (SSRF) inducing the web application to make requests to other applications. XXE may even enable port scanning and lead to remote code execution.
+XML (eXtensible Markup Language) 
+    is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable.
+Every XML document mostly starts with what is known as XML Prolog.  
+  
+    `<?xml version="1.0" encoding="UTF-8"?>`
+
+DTD stands for Document Type Definition.
+    A DTD defines the structure and the legal elements and attributes of an XML document.
+    ex:
+    !DOCTYPE
+    !ELEMENT
+    ex:
+    <!DOCTYPE root [<!ENTITY read SYSTEM 'file:///etc/passwd'>]>
+    If we use this payload then a website vulnerable to XXE(normally) would display the content of the file `/etc/passwd`.
+    
+    
